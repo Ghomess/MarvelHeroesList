@@ -1,12 +1,15 @@
 import React from 'react';
-
-import {SafeAreaView, StatusBar, Text} from 'react-native';
+import 'react-native-gesture-handler';
+import {StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import StackNavigator from './navigation/StackNavigator';
 
 function App() {
   return (
-    <SafeAreaView>
+    <NavigationContainer>
       <StatusBar hidden={true} />
-    </SafeAreaView>
+      <StackNavigator />
+    </NavigationContainer>
   );
 }
 
