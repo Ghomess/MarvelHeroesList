@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNavigator from '../navigation/StackNavigator';
 
@@ -20,7 +20,7 @@ describe('Navigation Stack', () => {
     expect(textInputs.length).toBe(2);
   });
 
-  test('navigates to Welcome screen when login button is pressed', () => {
+  test('navigates to Welcome screen when login button is pressed', async () => {
     const {getByTestId, getByText} = render(
       <NavigationContainer>
         <StackNavigator />
@@ -28,6 +28,8 @@ describe('Navigation Stack', () => {
     );
 
     fireEvent.press(getByTestId('button'));
-    expect(getByText('Welcome')).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText('Welcome')).toBeTruthy();
+    });
   });
 });
