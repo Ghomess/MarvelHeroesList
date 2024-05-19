@@ -1,12 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export const loginScreenStyles = StyleSheet.create({
-  container: {},
+  container: {justifyContent: 'space-evenly'},
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
 
-    flex: 0.5,
     width: '90%',
   },
   image: {

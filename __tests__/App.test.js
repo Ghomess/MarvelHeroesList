@@ -20,14 +20,14 @@ describe('Navigation Stack', () => {
     expect(textInputs.length).toBe(2);
   });
 
-  /*  test('navigates to Welcome screen when button is pressed', () => {
-    const {getByTestId} = render(
+  test('navigates to Welcome screen when login button is pressed', () => {
+    const {getByTestId, getByText} = render(
       <NavigationContainer>
         <StackNavigator />
       </NavigationContainer>,
     );
 
-    fireEvent.press(getByTestId('Login'));
-    expect(getByTestId('Welcome Screen')).toBeTruthy();
-  }); */
+    fireEvent.press(getByTestId('button'));
+    expect(getByText('Welcome')).toBeTruthy();
+  });
 });
