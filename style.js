@@ -6,7 +6,8 @@ export const colors = {
   green: '#00991f',
   gray: '#999999',
   white: '#ffffff',
-  purple: '	#460061',
+  purple: '#460061',
+  black: '#000000',
 };
 export const styles = StyleSheet.create({
   container: {
