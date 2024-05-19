@@ -15,7 +15,7 @@ const LoginScreen = ({navigation}) => {
     const authResult = await authApi();
     //checks if authResult is true to navigate to WelcomeScreen
     if (authResult) {
-      navigation.navigate('WelcomeScreen');
+      navigation.replace('WelcomeScreen');
     }
   };
 
