@@ -3,8 +3,9 @@ import {Image, View} from 'react-native';
 import {styles} from '../../style';
 import InputComponent from '../../components/InputComponent/InputComponent';
 import {loginScreenStyles} from './LoginScreenStyle';
+import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,6 +36,10 @@ const LoginScreen = () => {
           secureTextEntry={true}
         />
       </View>
+      <ButtonComponent
+        placeholder={'Login'}
+        onPress={() => navigation.navigate('WelcomeScreen')}
+      />
     </View>
   );
 };
