@@ -28,7 +28,7 @@ const StackNavigator = () => {
       <Stack.Screen
         name="WelcomeScreen"
         component={WelcomeScreen}
-        options={{title: 'Welcome'}}
+        options={{title: 'Welcome', headerLeft: () => null}}
       />
       <Stack.Screen
         name="HeroesScreen"
