@@ -7,7 +7,7 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 const mockNavigate = jest.fn();
 const createTestProps = props => ({
   navigation: {
-    navigate: mockNavigate,
+    replace: mockNavigate,
     ...props,
   },
 });
