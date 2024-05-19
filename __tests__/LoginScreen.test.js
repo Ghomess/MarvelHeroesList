@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 
 //Mock navigation.navigate function
@@ -38,7 +38,7 @@ describe('Login Screen', () => {
     expect(passwordInput.props.value).toBe('password123');
   });
 
-  test('function is called when button is pressed', () => {
+  test('function is called when button is pressed', async () => {
     const props = createTestProps({});
     const {getByTestId} = render(<LoginScreen {...props} />);
 
@@ -46,6 +46,9 @@ describe('Login Screen', () => {
 
     fireEvent.press(button);
 
-    expect(mockNavigate).toHaveBeenCalled();
+    // Wait for the authentication to complete
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalled();
+    });
   });
 });

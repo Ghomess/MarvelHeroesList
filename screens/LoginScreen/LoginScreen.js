@@ -4,10 +4,20 @@ import {styles} from '../../style';
 import InputComponent from '../../components/InputComponent/InputComponent';
 import {loginScreenStyles} from './LoginScreenStyle';
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
+import {authApi} from '../../api/authApi';
 
 const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  //Mock Auth
+  const auth = async () => {
+    const authResult = await authApi();
+    //checks if authResult is true to navigate to WelcomeScreen
+    if (authResult) {
+      navigation.navigate('WelcomeScreen');
+    }
+  };
 
   return (
     <View
@@ -36,10 +46,7 @@ const LoginScreen = ({navigation}) => {
           secureTextEntry={true}
         />
       </View>
-      <ButtonComponent
-        placeholder={'Login'}
-        onPress={() => navigation.navigate('WelcomeScreen')}
-      />
+      <ButtonComponent placeholder={'Login'} onPress={() => auth()} />
     </View>
   );
 };
