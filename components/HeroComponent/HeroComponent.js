@@ -1,8 +1,10 @@
-import React from 'react';
-import {Image, Text, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {ActivityIndicator, Image, Text, TouchableOpacity} from 'react-native';
 import {HeroComponentStyles} from './HeroComponentStyle';
+import {colors} from '../../style';
 
 const HeroComponent = ({item, showAll, navigation}) => {
+  const [loading, setLoading] = useState(true);
   return (
     <TouchableOpacity
       style={
@@ -14,9 +16,20 @@ const HeroComponent = ({item, showAll, navigation}) => {
         navigation.navigate('HeroDetailsScreen', {item});
       }}
       testID="heroComponent">
+      {loading && (
+        <ActivityIndicator
+          size={'large'}
+          color={colors.blue}
+          testID="ActivityIndicator"
+        />
+      )}
       <Image
-        style={HeroComponentStyles.heroImage}
-        source={{uri: item.image}}
+        style={[
+          HeroComponentStyles.heroImage,
+          loading && [HeroComponentStyles.loadingImage],
+        ]}
+        source={{uri: item.images.md}}
+        onLoad={() => setLoading(false)}
         testID="Image.heroComponent"
       />
       <Text style={HeroComponentStyles.name} testID="Name.heroComponent">

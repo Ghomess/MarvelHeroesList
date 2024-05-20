@@ -3,6 +3,7 @@ import React from 'react';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNavigator from '../navigation/StackNavigator';
+import {superHeroesApi} from '../api/superHeroesApi';
 
 describe('Navigation Stack', () => {
   test('renders login screen by default', () => {
@@ -58,8 +59,12 @@ describe('Navigation Stack', () => {
     fireEvent.press(getByTestId('button'));
     await waitFor(() => {
       expect(getByText('Welcome')).toBeTruthy();
-      fireEvent.press(getByTestId('button'));
-      expect(getByText('Heroes')).toBeTruthy();
+    });
+    fireEvent.press(getByTestId('button'));
+    expect(getByText('Heroes')).toBeTruthy();
+    const authResult = await superHeroesApi();
+    expect(authResult).toBeTruthy();
+    await waitFor(() => {
       const [firstHero] = getAllByTestId('heroComponent');
       fireEvent.press(firstHero);
       expect(getByText('Hero Details')).toBeTruthy();

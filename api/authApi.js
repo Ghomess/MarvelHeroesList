@@ -1,10 +1,17 @@
 //Mock Auth
 export async function authApi() {
-  const response = await fetch('https://postman-echo.com/basic-auth', {
+  const url = 'https://postman-echo.com/basic-auth';
+  const options = {
     headers: {
       Authorization: 'Basic cG9zdG1hbjpwYXNzd29yZA==',
     },
-  });
-  const data = await response.json();
-  return data.authenticated;
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data.authenticated;
+  } catch (error) {
+    console.error(error);
+  }
 }

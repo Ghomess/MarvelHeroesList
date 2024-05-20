@@ -13,6 +13,7 @@ const LoginScreen = ({navigation}) => {
   //Mock Auth
   const auth = async () => {
     const authResult = await authApi();
+    console.log(authResult);
     //checks if authResult is true to navigate to WelcomeScreen
     if (authResult) {
       navigation.replace('WelcomeScreen');
