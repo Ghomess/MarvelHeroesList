@@ -32,4 +32,37 @@ describe('Navigation Stack', () => {
       expect(getByText('Welcome')).toBeTruthy();
     });
   });
+
+  test('navigates to Heroes screen when See Heroes button is pressed', async () => {
+    const {getByTestId, getByText} = render(
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>,
+    );
+
+    fireEvent.press(getByTestId('button'));
+    await waitFor(() => {
+      expect(getByText('Welcome')).toBeTruthy();
+      fireEvent.press(getByText('See Heroes'));
+      expect(getByText('Heroes')).toBeTruthy();
+    });
+  });
+
+  test('navigates to Hero Details screen when HeroComponent is pressed', async () => {
+    const {getByTestId, getByText, getAllByTestId} = render(
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>,
+    );
+
+    fireEvent.press(getByTestId('button'));
+    await waitFor(() => {
+      expect(getByText('Welcome')).toBeTruthy();
+      fireEvent.press(getByTestId('button'));
+      expect(getByText('Heroes')).toBeTruthy();
+      const [firstHero] = getAllByTestId('heroComponent');
+      fireEvent.press(firstHero);
+      expect(getByText('Hero Details')).toBeTruthy();
+    });
+  });
 });
