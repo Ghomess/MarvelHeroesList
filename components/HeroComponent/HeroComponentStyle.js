@@ -39,4 +39,8 @@ export const HeroComponentStyles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  loadingImage: {
+    position: 'absolute',
+    opacity: 0,
+  },
 });

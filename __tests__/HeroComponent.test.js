@@ -15,13 +15,13 @@ const createTestProps = props => ({
 const mockItem = {
   id: 1,
   name: 'Spiderman',
-  image:
-    'https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/images/md/226-doctor-strange.jpg',
+  images: {
+    md: 'https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/images/md/226-doctor-strange.jpg',
+  },
 };
+const props = createTestProps({});
 describe('Hero Component Screen', () => {
   test('renders HeroComponent screen', () => {
-    const props = createTestProps({});
-
     const {getByTestId} = render(
       <HeroComponent
         item={mockItem}
@@ -40,8 +40,27 @@ describe('Hero Component Screen', () => {
     expect(NameheroComponent).toBeTruthy();
   });
 
+  test('should display ActivityIndicator while image is loading', async () => {
+    const {getByTestId, queryByTestId} = render(
+      <HeroComponent
+        item={mockItem}
+        showAll={true}
+        navigation={mockNavigate}
+        {...props}
+      />,
+    );
+
+    expect(getByTestId('heroComponent')).toContainElement(
+      getByTestId('ActivityIndicator'),
+    );
+    expect(getByTestId('Image.heroComponent')).toBeTruthy();
+
+    fireEvent(getByTestId('Image.heroComponent'), 'onLoad');
+
+    await waitFor(() => expect(queryByTestId('ActivityIndicator')).toBeNull());
+  });
+
   test('navigates to Hero Details screen when HeroComponent is pressed', async () => {
-    const props = createTestProps({});
     const {getByTestId} = render(
       <HeroComponent
         item={mockItem}
