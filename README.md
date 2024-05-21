@@ -2,6 +2,42 @@
 
 Welcome to my Marvel Heroes List! This app is built using React Native and serves to test my React Native skills.
 
+## Features
+
+- Login Screen:
+
+  - Username input field.
+  - Password input field.
+  - Login button.
+
+- Mock Authentication:
+
+  - Authentication process is simulated (mocked).
+  - Allows access with any username/password combination.
+
+- Welcome Screen:
+
+  - Displays a welcome message.
+  - Button labeled "See Heroes".
+
+- Heroes Screen:
+
+  - Fetches and displays 4 random heroes initially using this API: https://rapidapi.com/jakash1997/api/superhero-search.
+  - Includes a "Show More" button to display an additional 4 random heroes.
+  - Each hero is clickable.
+  - Back button to return to the Welcome screen.
+
+- Hero Detail Screen:
+
+  - Shows detailed information about the selected hero.
+  - Back button to return to the Heroes screen.
+
+- Additional Features:
+
+  - Error handling for failed data fetching.
+  - Loading indicators during data fetching.
+  - Loading state while loading hero images.
+
 ## Third-Party Libraries
 
 Here's a list of third-party libraries used in this project and their purposes:
@@ -30,7 +66,7 @@ Here's a list of third-party libraries used in this project and their purposes:
 
 4. Create an .env file to add the API key (https://rapidapi.com/jakash1997/api/superhero-search) using the following code:
 
-   API_KEY=yourapikey
+   REACT_APP_API_KEY=yourapikey
 
 ## Usage
 

@@ -1,5 +1,5 @@
 import 'react-native';
-import React, {act} from 'react';
+import React from 'react';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import HeroesScreen from '../screens/HeroesScreen/HeroesScreen';
 import {superHeroesApi} from '../api/superHeroesApi';
