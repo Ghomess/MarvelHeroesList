@@ -6,6 +6,7 @@ import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import HeroComponent from '../../components/HeroComponent/HeroComponent';
 import {superHeroesApi} from '../../api/superHeroesApi';
+
 const HeroesScreen = ({navigation}) => {
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -21,10 +22,15 @@ const HeroesScreen = ({navigation}) => {
     const getHeroes = async () => {
       try {
         const heroesData = await superHeroesApi();
-        console.log('heroesData: ', heroesData);
-        setHeroes(heroesData);
-        console.log(heroesData.length);
-        setSlicedData(heroesData.slice(0, 4));
+
+        //check for errors if they exist it goes back to welcome screen
+        if (heroesData?.message) {
+          navigation.goBack();
+        } else {
+          setHeroes(heroesData);
+
+          setSlicedData(heroesData.slice(0, 4));
+        }
       } catch (err) {
         setHeroes(err);
       } finally {

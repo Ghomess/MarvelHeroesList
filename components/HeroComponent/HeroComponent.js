@@ -13,7 +13,7 @@ const HeroComponent = ({item, showAll, navigation}) => {
           : HeroComponentStyles.containerPartialHeight
       }
       onPress={() => {
-        navigation.navigate('HeroDetailsScreen', {item});
+        navigation.navigate('HeroDetailsScreen', {hero: item});
       }}
       testID="heroComponent">
       {loading && (

@@ -65,9 +65,30 @@ describe('Navigation Stack', () => {
     const authResult = await superHeroesApi();
     expect(authResult).toBeTruthy();
     await waitFor(() => {
-      const [firstHero] = getAllByTestId('heroComponent');
-      fireEvent.press(firstHero);
-      expect(getByText('Hero Details')).toBeTruthy();
+      const heroComponents = getAllByTestId('heroComponent');
+      expect(heroComponents.length).toBe(4);
     });
+    const [firstHero] = getAllByTestId('heroComponent');
+
+    fireEvent.press(firstHero);
+
+    expect(getByText('Hero Details')).toBeTruthy();
+
+    // Check hero details
+    expect(getByTestId('Image.HeroDetailsScreen')).toBeTruthy();
+    // Check appearance details
+    expect(getByText('Gender')).toBeTruthy();
+    expect(getByText('Race')).toBeTruthy();
+
+    // Check power stats title
+    expect(getByText('Power Stats')).toBeTruthy();
+
+    // Check each power stat
+    expect(getByText('Combat:')).toBeTruthy();
+    expect(getByText('Intelligence:')).toBeTruthy();
+    expect(getByText('Speed:')).toBeTruthy();
+    expect(getByText('Durability:')).toBeTruthy();
+    expect(getByText('Power:')).toBeTruthy();
+    expect(getByText('Strength:')).toBeTruthy();
   });
 });
