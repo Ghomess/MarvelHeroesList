@@ -23,6 +23,7 @@ Welcome to my Marvel Heroes List! This app is built using React Native and serve
 - Heroes Screen:
 
   - Fetches and displays 4 random heroes initially using this API: https://rapidapi.com/jakash1997/api/superhero-search.
+  - Includes a search bar to filter heroes by name.
   - Includes a "Show More" button to display an additional 4 random heroes.
   - Each hero is clickable.
   - Back button to return to the Welcome screen.
@@ -37,6 +38,8 @@ Welcome to my Marvel Heroes List! This app is built using React Native and serve
   - Error handling for failed data fetching.
   - Loading indicators during data fetching.
   - Loading state while loading hero images.
+  - Saves the auth state in redux, and the user can log out on all screens except the login screen.
+  - Displays a message if there are no heroes on the heroes screen.
 
 ## Third-Party Libraries
 
@@ -66,7 +69,7 @@ Here's a list of third-party libraries used in this project and their purposes:
 
    yarn install
 
-4. Create an .env file to add the API key (https://rapidapi.com/jakash1997/api/superhero-search) using the following code:
+4. Create an .env file in the root folder of the project to add the API key (https://rapidapi.com/jakash1997/api/superhero-search) using the following code:
 
    REACT_APP_API_KEY=yourapikey
 
