@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../style';
 
 export const heroesScreenStyles = StyleSheet.create({
   container: {
@@ -20,5 +21,10 @@ export const heroesScreenStyles = StyleSheet.create({
   },
   flatListContent: {
     justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: colors.white,
   },
 });

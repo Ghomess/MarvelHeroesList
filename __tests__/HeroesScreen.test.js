@@ -33,11 +33,13 @@ describe('Heroes Screen', () => {
 
   test('navigates to Hero Details screen when HeroComponent is pressed', async () => {
     const props = createTestProps({});
-    const {getAllByTestId} = render(<HeroesScreen {...props} />);
+    const {getAllByTestId, getByTestId} = render(<HeroesScreen {...props} />);
     const authResult = await superHeroesApi();
     expect(authResult).toBeTruthy();
     await waitFor(() => {
       const heroComponents = getAllByTestId('heroComponent');
+      const searchInput = getByTestId('input');
+      expect(searchInput).toBeTruthy();
 
       const [firstHero] = heroComponents;
       expect(firstHero).toBeTruthy();
@@ -50,9 +52,13 @@ describe('Heroes Screen', () => {
 
   test('Show more Heroes when "Show More" button is pressed and hide when "Show Less" button is pressed', async () => {
     const props = createTestProps({});
-    const {getAllByTestId, getByText} = render(<HeroesScreen {...props} />);
+    const {getAllByTestId, getByText, getByTestId} = render(
+      <HeroesScreen {...props} />,
+    );
     const authResult = await superHeroesApi();
     expect(authResult).toBeTruthy();
+    const searchInput = getByTestId('input');
+    expect(searchInput).toBeTruthy();
 
     await waitFor(() => {
       const buttonShowMore = getByText('Show More');
@@ -77,5 +83,14 @@ describe('Heroes Screen', () => {
     updatedHeroComponents.forEach((component, index) => {
       expect(component).toBeTruthy();
     });
+  });
+
+  test('tests the search input', async () => {
+    const props = createTestProps({});
+    const {getByTestId} = render(<HeroesScreen {...props} />);
+    const searchInput = getByTestId('input');
+    expect(searchInput).toBeTruthy();
+    fireEvent.changeText(searchInput, 'Spiderman');
+    expect(searchInput.props.value).toBe('Spiderman');
   });
 });
