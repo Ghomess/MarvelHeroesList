@@ -2,6 +2,10 @@ import 'react-native';
 import React from 'react';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import store from '../redux/store';
+import {login} from '../redux/reducers/authSlicer';
 
 //Mock navigation.navigate function
 const mockNavigate = jest.fn();
@@ -14,7 +18,13 @@ const createTestProps = props => ({
 
 describe('Login Screen', () => {
   test('renders login screen', () => {
-    const {getByTestId, getAllByTestId} = render(<LoginScreen />);
+    const {getByTestId, getAllByTestId} = render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <LoginScreen />
+        </NavigationContainer>
+      </Provider>,
+    );
 
     const loginScreen = getByTestId('View.LoginScreen');
     const image = getByTestId('Image.LoginScreen');
@@ -27,7 +37,13 @@ describe('Login Screen', () => {
   });
 
   test('allows users to input username and password', () => {
-    const {getAllByTestId} = render(<LoginScreen />);
+    const {getAllByTestId} = render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <LoginScreen />
+        </NavigationContainer>
+      </Provider>,
+    );
 
     const [usernameInput, passwordInput] = getAllByTestId('input');
 
@@ -40,7 +56,14 @@ describe('Login Screen', () => {
 
   test('function is called when button is pressed', async () => {
     const props = createTestProps({});
-    const {getByTestId} = render(<LoginScreen {...props} />);
+    const dispatchMock = jest.spyOn(store, 'dispatch');
+    const {getByTestId} = render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <LoginScreen {...props} />
+        </NavigationContainer>
+      </Provider>,
+    );
 
     const button = getByTestId('button');
 
@@ -49,6 +72,7 @@ describe('Login Screen', () => {
     // Wait for the authentication to complete
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();
+      expect(dispatchMock).toHaveBeenCalledWith(login());
     });
   });
 });

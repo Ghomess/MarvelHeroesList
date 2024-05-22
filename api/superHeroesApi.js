@@ -3,7 +3,7 @@ import {REACT_APP_API_KEY} from '@env';
 import {Alert} from 'react-native';
 export async function superHeroesApi() {
   const url = 'https://superhero-search.p.rapidapi.com/api/heroes';
-
+  console.log(REACT_APP_API_KEY);
   const options = {
     method: 'GET',
     headers: {

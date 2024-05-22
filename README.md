@@ -46,6 +46,8 @@ Here's a list of third-party libraries used in this project and their purposes:
 
 - **react-native-dotenv**: React Native DotEnv is a Babel plugin for injecting environment variables into the app. It's used to add the API keys as an environment variable.
 
+- **react-native-vector-icons**: React Native Vector Icons is used for adding icons to the app. It provides a wide range of customizable icons that can be easily integrated into the app.
+
 ## Installation
 
 1. Clone the repository to your local machine:

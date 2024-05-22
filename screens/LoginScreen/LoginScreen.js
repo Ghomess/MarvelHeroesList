@@ -5,17 +5,20 @@ import InputComponent from '../../components/InputComponent/InputComponent';
 import {loginScreenStyles} from './LoginScreenStyle';
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
 import {authApi} from '../../api/authApi';
+import {useDispatch} from 'react-redux';
+import {login} from '../../redux/reducers/authSlicer';
 
 const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const dispatch = useDispatch();
   //Mock Auth
   const auth = async () => {
     const authResult = await authApi();
     console.log(authResult);
     //checks if authResult is true to navigate to WelcomeScreen
     if (authResult) {
+      dispatch(login());
       navigation.replace('WelcomeScreen');
     }
   };
