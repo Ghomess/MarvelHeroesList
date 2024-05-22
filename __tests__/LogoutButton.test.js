@@ -2,20 +2,22 @@ import 'react-native';
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import WelcomeScreen from '../screens/WelcomeScreen/WelcomeScreen';
 import LogoutButton from '../components/LogoutButton/LogoutButton';
 import store from '../redux/store';
 import {logout} from '../redux/reducers/authSlicer';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 
+// Mock navigation method
+jest.mock('@react-navigation/native');
 describe('Logout Button', () => {
   test('renders Logout button', () => {
+    // Mock useNavigation to return a navigation object with replace method
+    useNavigation.mockReturnValue({replace: jest.fn()});
+
     const {getByTestId} = render(
       <Provider store={store}>
-        <NavigationContainer>
-          <LogoutButton />
-        </NavigationContainer>
+        <LogoutButton />
       </Provider>,
     );
 
@@ -24,12 +26,12 @@ describe('Logout Button', () => {
   });
 
   test('updates auth state when the user presses the logout button', () => {
+    // Mock useNavigation to return a navigation object with replace method
+    useNavigation.mockReturnValue({replace: jest.fn()});
     const dispatchMock = jest.spyOn(store, 'dispatch');
     const {getByTestId} = render(
       <Provider store={store}>
-        <NavigationContainer>
-          <LogoutButton />
-        </NavigationContainer>
+        <LogoutButton />
       </Provider>,
     );
 

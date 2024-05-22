@@ -11,6 +11,7 @@ import LogoutButton from '../components/LogoutButton/LogoutButton';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
+  // Arrow function that returns <LogoutButton />
   const headerRightComponent = () => <LogoutButton />;
   return (
     <Stack.Navigator

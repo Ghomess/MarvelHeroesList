@@ -1,7 +1,10 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {ButtonComponentStyles} from './ButtonComponentStyle';
 
+//ButtonComponet - A styled component that renders a button with two params:
+//placeholder as the text displayed in the button
+//and onPress as the onPress function of the button
 const ButtonComponent = ({placeholder, onPress}) => {
   return (
     <TouchableOpacity
